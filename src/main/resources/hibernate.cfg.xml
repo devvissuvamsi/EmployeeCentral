@@ -4,10 +4,9 @@
 <hibernate-configuration>
 
 	<session-factory>
-
 		<!-- Database Connection Settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/simplilearndb</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/employeecentral</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">Password123</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -17,10 +16,8 @@
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">create-drop</property>
 		<!-- List of XML mapping files -->
-		<mapping class="com.bhawnagunwani.OneToManyRelationship.Stock" />
-		<mapping
-			class="com.bhawnagunwani.OneToManyRelationship.StockDailyRecord" />
-
+		<mapping class="com.simplilearn.OneToManyRelationship.Department" />
+		<mapping class="com.simplilearn.OneToManyRelationship.Employee" />
 	</session-factory>
 
 </hibernate-configuration>	
