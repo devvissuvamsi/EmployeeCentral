@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
 		if(session!=null) {
 			session.removeAttribute("username");
 			session.invalidate();
-			request.getRequestDispatcher("login.html").include(request, response);
+			request.getRequestDispatcher("login.jsp").include(request, response);
 			writer.println("<div class=\"row\">\r\n" + 
 					"    <div class=\"col-lg-3 col-md-2\"></div>\r\n" + 
 					"    <div class=\"alert alert-success\" role=\"alert\">\r\n" + 

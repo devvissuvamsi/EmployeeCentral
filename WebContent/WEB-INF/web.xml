@@ -5,6 +5,7 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>EmployeeCentral</display-name>
 	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
 		<welcome-file>login.html</welcome-file>
 	</welcome-file-list>
 	<session-config>

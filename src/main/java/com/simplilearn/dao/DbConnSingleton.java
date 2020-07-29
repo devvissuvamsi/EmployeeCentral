@@ -43,16 +43,19 @@ public class DbConnSingleton {
 	private static Connection getMySqlConnection() {
 		Connection con = null;
 		try {
-			/*
-			 * Properties prop = loadPropertiesFile(); String driverClass =
-			 * prop.getProperty("MYSQLJDBC.driver"); String url =
-			 * prop.getProperty("MYSQLJDBC.url"); String username =
-			 * prop.getProperty("MYSQLJDBC.username"); String password =
-			 * prop.getProperty("MYSQLJDBC.password");
-			 */
+			
+			  Properties prop = loadPropertiesFile(); 
+			  String driverClass = prop.getProperty("MYSQLJDBC.driver"); 
+			  String url = prop.getProperty("MYSQLJDBC.url"); 
+			  String username = prop.getProperty("MYSQLJDBC.username"); 
+			  String password = prop.getProperty("MYSQLJDBC.password");
+			 
 
-			String driverClass = "com.mysql.cj.jdbc.Driver", url = "jdbc:mysql://localhost:3306/adminportal",
-					username = "root", password = "Password123";
+			/* Assign Manual
+			 * String driverClass = "com.mysql.cj.jdbc.Driver", url =
+			 * "jdbc:mysql://localhost:3306/adminportal", username = "root", password =
+			 * "Password123";
+			 */
 
 			Class.forName(driverClass);
 			con = DriverManager.getConnection(url, username, password);
