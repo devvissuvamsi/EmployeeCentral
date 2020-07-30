@@ -53,7 +53,25 @@ public class DefaultServlet extends HttpServlet {
 				break;					
 			case "/user.view":
 				userView(request,response);
-				break;					
+				break;
+			case "/department.index":
+				departmentIndex(request,response);
+				break;
+			case "/department.create":
+				departmentCreate(request,response);
+				break;
+			case "/department.edit":
+				departmentEdit(request,response);
+				break;
+			case "/employee.index":
+				employeeIndex(request,response);
+				break;
+			case "/employee.create":
+				employeeCreate(request,response);
+				break;
+			case "/employee.edit":
+				employeeEdit(request,response);
+				break;				
 			default :
 				home(request,response);
 				break;
@@ -62,10 +80,6 @@ public class DefaultServlet extends HttpServlet {
 		catch(Exception e) {
 			System.out.println("Exception caught: " + e.getMessage());
 		}
-	}
-	
-	private void userView(HttpServletRequest request, HttpServletResponse response) {
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -89,6 +103,21 @@ public class DefaultServlet extends HttpServlet {
 			case "/user.delete":
 			case "/customer.delete":
 				userDelete(request,response);
+				break;
+			case "/department.create":
+				departmentCreate(request,response);
+				break;
+			case "/department.edit":
+				departmentEdit(request,response);
+				break;
+			case "/employee.index":
+				employeeIndex(request,response);
+				break;
+			case "/employee.create":
+				employeeCreate(request,response);
+				break;
+			case "/employee.edit":
+				employeeEdit(request,response);
 				break;					
 			default :
 				home(request,response);
@@ -99,6 +128,42 @@ public class DefaultServlet extends HttpServlet {
 			System.out.println("Exception caught: " + e.getMessage());
 		}
 	}
+	
+	private void employeeEdit(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void employeeCreate(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void employeeIndex(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void departmentEdit(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void departmentCreate(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void departmentIndex(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void userView(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+
+
 
 	private void userDelete(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, ServletException, IOException, SQLException {
 		if(checkSession(request,response)) {
