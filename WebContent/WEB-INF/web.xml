@@ -79,6 +79,10 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/department.create</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/employee.index</url-pattern>
 	</servlet-mapping>	
 	<servlet>

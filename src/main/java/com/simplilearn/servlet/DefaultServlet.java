@@ -153,9 +153,21 @@ public class DefaultServlet extends HttpServlet {
 		
 	}
 
-	private void departmentCreate(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void departmentCreate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		if(checkSession(request,response)) {
+			if(request.getParameter("submit")!= null) {
+				Department dept = new Department();
+				dept.setDepartmentName(request.getParameter("departmentName"));
+				Department.insertDepartment(dept);
+				response.sendRedirect("department.index");				
+			}
+			else {
+				RequestDispatcher rd = request.getRequestDispatcher("deptmanage.jsp");
+				request.setAttribute("title", "Create Department");
+				request.setAttribute("uri", "/department.create");
+				rd.forward(request, response);
+			}			
+		}			
 	}
 
 	private void departmentIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
