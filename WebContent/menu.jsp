@@ -20,7 +20,7 @@ if(cookies !=null){
 	sessionID = session.getId();
 }
 
-String activeClassHome="active",activeClassUser="",activeClassCustomer="",activeClassAbout="";
+String activeClassHome="active",activeClassUser="",activeClassCustomer="",activeClassAbout="",activeClassDepartment="",activeClassEmployee="";
 
 try{
 	switch(request.getAttribute("title").toString().toLowerCase()){
@@ -30,6 +30,12 @@ try{
 	case "customer":
 		activeClassCustomer="active";
 		break;
+	case "department":
+		activeClassDepartment="active";
+		break;		
+	case "employee":
+		activeClassEmployee="active";
+		break;		
 	default :
 		activeClassHome="active";
 		break;
@@ -60,10 +66,10 @@ catch(Exception e){
 				<li class="nav-item <%=activeClassHome%>"><a class="nav-link" href="<%=request.getContextPath()%>/home">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item <%=activeClassUser%>"><a class="nav-link" href="<%=request.getContextPath()%>/user.index">Manage
-						User</a></li>
-				<li class="nav-item <%=activeClassCustomer%>"><a class="nav-link" href="<%=request.getContextPath()%>/customer.index">Manage
-						Customer</a></li>
+				<li class="nav-item <%=activeClassUser%>"><a class="nav-link" href="<%=request.getContextPath()%>/user.index">User</a></li>
+				<li class="nav-item <%=activeClassCustomer%>"><a class="nav-link" href="<%=request.getContextPath()%>/customer.index">Customer</a></li>
+				<li class="nav-item <%=activeClassDepartment%>"><a class="nav-link" href="<%=request.getContextPath()%>/department.index">Department</a></li>
+				<li class="nav-item <%=activeClassEmployee%>"><a class="nav-link" href="<%=request.getContextPath()%>/employee.index">Employees</a></li>
 				<li class="nav-item <%=activeClassAbout%>"><a class="nav-link" href="<%=request.getContextPath()%>/about">About</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" action="logout" name="logout" method="post">

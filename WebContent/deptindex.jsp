@@ -26,30 +26,37 @@
 			<th><a href="<%=request.getContextPath()%><%=uri %>"	class="btn btn-success">${createButtonLabel}</a></th>
 		</tr>
 	</table>
-		
-	<table class="table table-striped table-hover">
-		<caption>${gridTitle}</caption>
-		<thead class="thead-dark">
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="user" items="${listUser}">
-				<tr>
-					<td><c:out value="${user.userId}"></c:out></td>
-					<td><c:out value="${user.userName}"></c:out></td>
-					<td>
-						<a href="<%=uriEdit %>?id=<c:out value='${user.userId}'/>" class="btn btn-secondary">Edit</a>
-						<a href="<%=uriDelete %>?id=<c:out value='${user.userId}'/>" class="btn btn-danger">Delete</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
 
+	<c:choose>
+	  <c:when test="${empty listDepartment}">
+	    <div class="alert alert-warning" role="alert">No Departments Found!</div>
+	  </c:when>
+	  <c:otherwise>
+		<table class="table table-striped table-hover">
+			<caption>${gridTitle}</caption>
+			<thead class="thead-dark">
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="dept" items="${listDepartment}">
+					<tr>
+						<td><c:out value="${dept.getDepartmentId()}"></c:out></td>
+						<td><c:out value="${dept.getDepartmentName()}"></c:out></td>
+						<td>
+							<a href="<%=uriEdit %>?id=<c:out value='${dept.getDepartmentId()}'/>" class="btn btn-secondary">Edit</a>
+							<a href="<%=uriDelete %>?id=<c:out value='${dept.getDepartmentId()}'/>" class="btn btn-danger">Delete</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>	    
+	  </c:otherwise>
+	</c:choose>
+	
 </div>
 <!--  content end -->
 <jsp:include page="footer.jsp"></jsp:include>

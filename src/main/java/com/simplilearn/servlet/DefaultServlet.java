@@ -3,6 +3,7 @@ package com.simplilearn.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import com.simplilearn.dao.UserDAO;
 import com.simplilearn.model.User;
+import com.simplilearn.model.hibernate.Department;
+import com.simplilearn.model.hibernate.Employee;
 
 public class DefaultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,9 +54,6 @@ public class DefaultServlet extends HttpServlet {
 			case "/customer.delete":
 				userDelete(request,response);
 				break;					
-			case "/user.view":
-				userView(request,response);
-				break;
 			case "/department.index":
 				departmentIndex(request,response);
 				break;
@@ -110,9 +110,6 @@ public class DefaultServlet extends HttpServlet {
 			case "/department.edit":
 				departmentEdit(request,response);
 				break;
-			case "/employee.index":
-				employeeIndex(request,response);
-				break;
 			case "/employee.create":
 				employeeCreate(request,response);
 				break;
@@ -139,9 +136,16 @@ public class DefaultServlet extends HttpServlet {
 		
 	}
 
-	private void employeeIndex(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void employeeIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+		if(checkSession(request,response)) {
+			List<Employee> empList = Employee.getAllEmployees();
+			request.setAttribute("listEmployee", empList);
+			request.setAttribute("createButtonLabel", "Create Employee");
+			request.setAttribute("gridTitle", "Employee List");
+			request.setAttribute("title", "employee");
+			RequestDispatcher rd = request.getRequestDispatcher("empindex.jsp");
+			rd.forward(request, response);
+		}		
 	}
 
 	private void departmentEdit(HttpServletRequest request, HttpServletResponse response) {
@@ -154,15 +158,17 @@ public class DefaultServlet extends HttpServlet {
 		
 	}
 
-	private void departmentIndex(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void departmentIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		if(checkSession(request,response)) {
+			List<Department> deptList = Department.getAllDepartments();
+			request.setAttribute("listDepartment", deptList);
+			request.setAttribute("createButtonLabel", "Create Department");
+			request.setAttribute("gridTitle", "Department List");
+			request.setAttribute("title", "department");
+			RequestDispatcher rd = request.getRequestDispatcher("deptindex.jsp");
+			rd.forward(request, response);
+		}			
 	}
-
-	private void userView(HttpServletRequest request, HttpServletResponse response) {
-		
-	}
-
 
 
 	private void userDelete(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, ServletException, IOException, SQLException {
