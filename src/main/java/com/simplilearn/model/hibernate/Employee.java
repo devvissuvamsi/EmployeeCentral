@@ -145,10 +145,9 @@ public class Employee {
 				emp.setPhone(row[4].toString());
 				
 				dept.setDepartmentName(row[5].toString());
-				dept.setDepartmentId(Long.parseLong(row[6].toString()) );
+				dept.setDepartmentId(Integer.parseInt(row[6].toString()) );
 				
 				emp.setDepartment(dept);
-				
 				empList.add(emp);
 				
 				System.out.println(emp);

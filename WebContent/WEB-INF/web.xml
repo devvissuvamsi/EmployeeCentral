@@ -80,11 +80,31 @@
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/department.create</url-pattern>
+	</servlet-mapping>
+			<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/department.edit</url-pattern>
 	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/department.delete</url-pattern>
+	</servlet-mapping>		
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/employee.index</url-pattern>
 	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/employee.create</url-pattern>
+	</servlet-mapping>	
+			<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/employee.edit</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/employee.delete</url-pattern>
+	</servlet-mapping>		
 	<servlet>
 		<description></description>
 		<display-name>LogoutServlet</display-name>

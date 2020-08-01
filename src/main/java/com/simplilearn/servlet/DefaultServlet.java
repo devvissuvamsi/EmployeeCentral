@@ -63,6 +63,9 @@ public class DefaultServlet extends HttpServlet {
 			case "/department.edit":
 				departmentEdit(request,response);
 				break;
+			case "/department.delete":
+				departmentDelete(request,response);
+				break;				
 			case "/employee.index":
 				employeeIndex(request,response);
 				break;
@@ -81,6 +84,7 @@ public class DefaultServlet extends HttpServlet {
 			System.out.println("Exception caught: " + e.getMessage());
 		}
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -148,9 +152,32 @@ public class DefaultServlet extends HttpServlet {
 		}		
 	}
 
-	private void departmentEdit(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void departmentDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Department.deleteDepartment(id);
+		response.sendRedirect("department.index");
+	}
+
+	private void departmentEdit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		if(checkSession(request,response)) {
+			if(request.getParameter("submit")!= null) {
+				Department dept = new Department();
+				dept.setDepartmentName(request.getParameter("departmentName"));
+				dept.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
+				Department.updateDepartment(dept);
+				response.sendRedirect("department.index");				
+			}
+			else {
+				Department dept = null;
+				int id = Integer.parseInt(request.getParameter("id"));
+				dept = Department.getDepartmentById(id);
+				RequestDispatcher rd = request.getRequestDispatcher("deptmanage.jsp");
+				request.setAttribute("departmentObj", dept);
+				request.setAttribute("title", "Edit Department");
+				request.setAttribute("uri", "/department.edit");
+				rd.forward(request, response);
+			}			
+		}	
 	}
 
 	private void departmentCreate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

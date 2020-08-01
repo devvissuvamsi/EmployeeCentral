@@ -18,10 +18,10 @@
 		<h2><%=title%></h2>
 		<br />
 		<form action="<%=request.getContextPath()%><%=uri%>" method="post">
-			<input type="hidden" class="form-control" name="id" value="" />
+			<input type="hidden" class="form-control" name="departmentId" value="<c:out value="${departmentObj.getDepartmentId()}"/>" />
 			<div class="form-group">
-				<label for="name">Department Name</label> <input type="text"
-					class="form-control" name="name" value="" />
+				<label for="departmentName">Department Name</label> <input type="text"
+					class="form-control" name="departmentName" value="<c:out value="${departmentObj.getDepartmentName()}"/>" />
 			</div>
 			<button type="submit" class="btn btn-primary" name="submit">Submit</button>
 		</form>

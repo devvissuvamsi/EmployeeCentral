@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.simplilearn.model.hibernate.Department;
@@ -24,7 +25,7 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="DEPARTMENT_ID")
-	private Long departmentId;
+	private int departmentId;
 	
 	@Column(name="DEPT_NAME")
 	private String departmentName;
@@ -47,11 +48,11 @@ public class Department {
 		this.departmentName = departmentName;
 	}
 
-	public Long getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(Long departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 
@@ -90,12 +91,12 @@ public class Department {
 		return id;		
 	}
 	
-	public static void updateDepartment(int id, Department department) {
+	public static void updateDepartment(Department department) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Department modDepartment = session.get(Department.class, department.getDepartmentId());
-		modDepartment.setDepartmentName(department.getDepartmentName());
-		session.update(modDepartment);
+		Department dept = session.get(Department.class, department.getDepartmentId());
+		dept.setDepartmentName(department.getDepartmentName());
+		session.update(dept);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -103,10 +104,22 @@ public class Department {
 	public static void deleteDepartment(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Department modDepartment = session.get(Department.class, id);
-		session.delete(modDepartment);
+		Department dept = session.get(Department.class, id);
+		session.delete(dept);
 		session.getTransaction().commit();
 		session.close();
-	}	
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static Department getDepartmentById(int id) {
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Department dept = (Department) session.get(Department.class, id);
+		session.getTransaction().commit();
+		session.close();
+		
+		return dept;
+	}
 
 }
