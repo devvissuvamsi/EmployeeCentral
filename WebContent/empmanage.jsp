@@ -10,7 +10,7 @@
 %>
 <%
 	String title = request.getAttribute("title").toString();
-	String uri = "/" + title.toLowerCase() + ".edit";
+	String uri = request.getAttribute("uri").toString();
 %>
 	<!--  content begin -->
 	<div class="container">

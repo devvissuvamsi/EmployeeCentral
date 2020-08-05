@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,7 +75,10 @@ public class DefaultServlet extends HttpServlet {
 				break;
 			case "/employee.edit":
 				employeeEdit(request,response);
-				break;				
+				break;	
+			case "/employee.delete":
+				employeeDelete(request,response);
+				break;					
 			default :
 				home(request,response);
 				break;
@@ -87,6 +91,8 @@ public class DefaultServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		String action = request.getServletPath();
 		try{
 			switch(action) {
@@ -119,6 +125,9 @@ public class DefaultServlet extends HttpServlet {
 				break;
 			case "/employee.edit":
 				employeeEdit(request,response);
+				break;
+			case "/employee.delete":
+				employeeDelete(request,response);
 				break;					
 			default :
 				home(request,response);
@@ -130,14 +139,30 @@ public class DefaultServlet extends HttpServlet {
 		}
 	}
 	
-	private void employeeEdit(HttpServletRequest request, HttpServletResponse response) {
+	private void employeeDelete(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	private void employeeCreate(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void employeeEdit(HttpServletRequest request, HttpServletResponse response) {
 		
+	}
+
+	private void employeeCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(checkSession(request,response)) {
+			if(request.getParameter("submit")!= null) {
+				Department dept = new Department();
+				dept.setDepartmentName(request.getParameter("departmentName"));
+				Department.insertDepartment(dept);
+				response.sendRedirect("employee.index");				
+			}
+			else {
+				RequestDispatcher rd = request.getRequestDispatcher("empmanage.jsp");
+				request.setAttribute("title", "Create Employee");
+				request.setAttribute("uri", "/employee.create");
+				rd.forward(request, response);
+			}			
+		}			
 	}
 
 	private void employeeIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
@@ -356,6 +381,12 @@ public class DefaultServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", request.getParameter("username"));
 			request.setAttribute("loggedInUser", userObj);
+			
+//			set cookies
+			Cookie userName = new Cookie("username", request.getParameter("username"));
+			userName.setMaxAge(30*60);
+			response.addCookie(userName);
+			
 			request.getRequestDispatcher("home").forward(request, response);
 		}
 		else {
