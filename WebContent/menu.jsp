@@ -1,18 +1,13 @@
 <%
 //allow access only if session exists
-String user = null;
-if(session.getAttribute("username") == null){
-	response.sendRedirect("login.html");
-}else user = (String) session.getAttribute("username");
-
-
+String user = (String) session.getAttribute("username");
 String userName = null;
 String sessionID = null;
 
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 	for(Cookie cookie : cookies){
-		if(cookie.getName().equals("user")) userName = cookie.getValue();
+		if(cookie.getName().equals("username")) userName = cookie.getValue();
 		if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
 	}
 
@@ -52,7 +47,7 @@ catch(Exception e){
 		<a class="navbar-brand" href="<%=request.getContextPath()%>/home"> 
 		<%
 // 			out.print("Welcome " + user + ", SessionID: " + sessionID);
- 			out.print("Welcome " + user);
+ 			out.print("Welcome " + userName);
  		%></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
