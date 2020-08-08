@@ -356,6 +356,9 @@ public class DefaultServlet extends HttpServlet {
 			session.removeAttribute("username");
 			session.invalidate();
 			
+//			remove cookies
+			eraseCookie(request,response);
+			
 	        // if not contains logout then it must be due to session expire
 	        if (!request.getParameterMap().containsKey("logout")) {
 	        	logoutMessage = "Session Expired ! Please login again";
@@ -373,6 +376,17 @@ public class DefaultServlet extends HttpServlet {
 		}		
 	}
 
+	private void eraseCookie(HttpServletRequest req, HttpServletResponse resp) {
+	    Cookie[] cookies = req.getCookies();
+	    if (cookies != null)
+	        for (Cookie cookie : cookies) {
+	            cookie.setValue("");
+	            cookie.setPath("/");
+	            cookie.setMaxAge(0);
+	            resp.addCookie(cookie);
+	        }
+	}
+	
 	private void login(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ServletException {
 		PrintWriter writer = response.getWriter();
 		User userObj = null;
@@ -407,14 +421,14 @@ public class DefaultServlet extends HttpServlet {
 	private void about(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(checkSession(request,response)) {
 			RequestDispatcher rd = request.getRequestDispatcher("about.jsp");
-			rd.include(request, response);
+			rd.forward(request, response);
 		}
 	}
 
 	private void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(checkSession(request,response)) {
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-			rd.include(request, response);
+			rd.forward(request, response);
 		}
 	}
 

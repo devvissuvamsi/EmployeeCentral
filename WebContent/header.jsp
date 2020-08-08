@@ -10,7 +10,7 @@ if(session.getAttribute("username") == null){
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Portal</title>
+<title>Workforce Central</title>
 <!-- CSS only -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
