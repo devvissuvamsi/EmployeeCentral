@@ -18,6 +18,8 @@
 		<!-- List of XML mapping files -->
 		<mapping class="com.simplilearn.model.hibernate.Department" />
 		<mapping class="com.simplilearn.model.hibernate.Employee" />
+		<mapping class="com.simplilearn.model.hibernate.Country" />
+		<mapping resource="named-queries.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>	

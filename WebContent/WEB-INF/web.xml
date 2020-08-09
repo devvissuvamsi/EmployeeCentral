@@ -32,23 +32,23 @@
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/user.index</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/user.create</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/user.edit</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/user.edit?</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/user.delete</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/user.view</url-pattern>
@@ -56,23 +56,23 @@
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/customer.index</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/customer.create</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/customer.edit</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/customer.edit?</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/customer.delete</url-pattern>
-	</servlet-mapping>		
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/department.index</url-pattern>
@@ -81,30 +81,30 @@
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/department.create</url-pattern>
 	</servlet-mapping>
-			<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/department.edit</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/department.delete</url-pattern>
-	</servlet-mapping>		
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/employee.index</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/employee.create</url-pattern>
-	</servlet-mapping>	
-			<servlet-mapping>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/employee.edit</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
 		<url-pattern>/employee.delete</url-pattern>
-	</servlet-mapping>		
+	</servlet-mapping>
 	<servlet>
 		<description></description>
 		<display-name>LogoutServlet</display-name>
@@ -124,7 +124,7 @@
 	<servlet-mapping>
 		<servlet-name>AppExceptionHandlerServlet</servlet-name>
 		<url-pattern>/AppExceptionHandler</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/AppExceptionHandler</location>
@@ -134,4 +134,19 @@
 		<exception-type>javax.servlet.ServletException</exception-type>
 		<location>/AppExceptionHandler</location>
 	</error-page>
+	<servlet>
+		<servlet-name>jersey-servlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<!-- <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name> 
+				<param-value>true</param-value> -->
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.simplilearn.rest.web</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jersey-servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 </web-app>
